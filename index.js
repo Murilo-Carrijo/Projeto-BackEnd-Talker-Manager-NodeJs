@@ -18,7 +18,14 @@ app.listen(PORT, () => {
 
 const { getAllTalkers } = require('./middlewares/getAllTalkers');
 
+const { getAllTalkerById } = require('./middlewares/getTalkerById');
+
 app.get(
   '/talker',
   getAllTalkers,
+);
+
+app.get(
+  '/talker/:id',
+  getAllTalkerById,
 );

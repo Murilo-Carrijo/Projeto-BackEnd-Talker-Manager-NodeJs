@@ -15,3 +15,10 @@ app.get('/', (_request, response) => {
 app.listen(PORT, () => {
   console.log('Online');
 });
+
+const { getAllTalkers } = require('./middlewares/getAllTalkers');
+
+app.get(
+  '/talker',
+  getAllTalkers,
+);

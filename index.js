@@ -20,6 +20,14 @@ const { getAllTalkers } = require('./middlewares/getAllTalkers');
 
 const { getAllTalkerById } = require('./middlewares/getTalkerById');
 
+const {
+  checkEmailExist,
+  validationEmail,
+  checkPasswordExist,
+  validationPassword,
+  login,
+} = require('./middlewares/login');
+
 app.get(
   '/talker',
   getAllTalkers,
@@ -28,4 +36,13 @@ app.get(
 app.get(
   '/talker/:id',
   getAllTalkerById,
+);
+
+app.post(
+  '/login',
+  checkEmailExist,
+  validationEmail,
+  checkPasswordExist,
+  validationPassword,
+  login,
 );

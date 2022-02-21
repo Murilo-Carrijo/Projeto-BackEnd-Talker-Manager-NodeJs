@@ -43,6 +43,8 @@ const {
 
 const { editTalker } = require('./middlewares/editTalker');
 
+const { deleteTalker } = require('./middlewares/deleteTalker');
+
 app.get(
   '/talker',
   getAllTalkers,
@@ -82,4 +84,10 @@ app.put(
   validateWatchedAt,
   validateRate,
   editTalker,
+);
+
+app.delete(
+  '/talker/:id',
+  validateToken,
+  deleteTalker,
 );

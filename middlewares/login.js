@@ -1,7 +1,18 @@
+const FILE_NAME = 'talker.json';
+const { writeFile } = require('fs/promises');
+
 const crypto = require('crypto');
+const { readerFile } = require('./getAllTalkers');
 
 const login = async (_req, res) => {
   const token = crypto.randomBytes(8).toString('hex');
+  let tokens = await readerFile();
+  if ((tokens).length > 0) {
+    tokens.push(token);
+  } else {
+    tokens = [token];
+  }
+  await writeFile(FILE_NAME, JSON.stringify(tokens));
   return res.status(200).json({ token });
 };
 

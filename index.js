@@ -28,6 +28,16 @@ const {
   login,
 } = require('./middlewares/login');
 
+const {
+  validateToken,
+  validateName,
+  validateAge,
+  validateTalk,
+  validateWatchedAt,
+  validateRate,
+  addTalker,
+} = require('./middlewares/createTalker');
+
 app.get(
   '/talker',
   getAllTalkers,
@@ -45,4 +55,15 @@ app.post(
   checkPasswordExist,
   validationPassword,
   login,
+);
+
+app.post(
+  '/talker',
+  validateToken,
+  validateName,
+  validateAge,
+  validateTalk,
+  validateWatchedAt,
+  validateRate,
+  addTalker,
 );

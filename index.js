@@ -35,8 +35,13 @@ const {
   validateTalk,
   validateWatchedAt,
   validateRate,
+} = require('./middlewares/validations');
+
+const {
   addTalker,
 } = require('./middlewares/createTalker');
+
+const { editTalker } = require('./middlewares/editTalker');
 
 app.get(
   '/talker',
@@ -66,4 +71,15 @@ app.post(
   validateWatchedAt,
   validateRate,
   addTalker,
+);
+
+app.put(
+  '/talker/:id',
+  validateToken,
+  validateName,
+  validateAge,
+  validateTalk,
+  validateWatchedAt,
+  validateRate,
+  editTalker,
 );

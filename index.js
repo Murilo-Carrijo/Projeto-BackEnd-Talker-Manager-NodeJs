@@ -20,30 +20,24 @@ const { getAllTalkers } = require('./middlewares/getAllTalkers');
 
 const { getAllTalkerById } = require('./middlewares/getTalkerById');
 
-const {
-  checkEmailExist,
-  validationEmail,
-  checkPasswordExist,
-  validationPassword,
-  login,
-} = require('./middlewares/login');
+const { login } = require('./middlewares/login');
 
-const {
-  validateToken,
-  validateName,
-  validateAge,
-  validateTalk,
-  validateWatchedAt,
-  validateRate,
-} = require('./middlewares/validations');
-
-const {
-  addTalker,
-} = require('./middlewares/createTalker');
+const { createTalker } = require('./middlewares/createTalker');
 
 const { editTalker } = require('./middlewares/editTalker');
 
 const { deleteTalker } = require('./middlewares/deleteTalker');
+
+const {
+  validateEmail,
+  validatePassword,
+  validateToken,
+  validateName,
+  validateAge,
+  validateTalk,
+  validateRate,
+  validateWatchedAt,
+} = require('./middlewares/validations');
 
 app.get(
   '/talker',
@@ -57,10 +51,8 @@ app.get(
 
 app.post(
   '/login',
-  checkEmailExist,
-  validationEmail,
-  checkPasswordExist,
-  validationPassword,
+  validateEmail,
+  validatePassword,
   login,
 );
 
@@ -70,9 +62,9 @@ app.post(
   validateName,
   validateAge,
   validateTalk,
-  validateWatchedAt,
   validateRate,
-  addTalker,
+  validateWatchedAt,
+  createTalker,
 );
 
 app.put(
@@ -81,8 +73,8 @@ app.put(
   validateName,
   validateAge,
   validateTalk,
-  validateWatchedAt,
   validateRate,
+  validateWatchedAt,
   editTalker,
 );
 
